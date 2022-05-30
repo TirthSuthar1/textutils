@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function () {
+
+
+export default function (props) {
+    const handleUpClick = () => {
+        let newText = text.toUpperCase();
+        setText(newText);
+    }
+
+    const handleOnChange = (event) => {
+        console.log("Clicked on change");
+        setText(event.target.value);
+    }
+    const [text, setText] = useState('Enter Text Here');
+
   return (
+    
     <div>
-        <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
+        <h1>{props.heading}</h1>
+        <div className="mb-3">
+        <textarea className="form-control" value = {text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+        </div>
+        <button className="btn btn-primary" onClick={handleUpClick}>Click me for uppercase</button>
     </div>
   )
 }
